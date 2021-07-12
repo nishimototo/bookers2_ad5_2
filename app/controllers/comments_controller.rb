@@ -4,7 +4,8 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
     @comment.book_id = @book.id
     if @comment.save
-      redirect_to book_path(@book)
+      #redirect_to book_path(@book)
+      render :index
     else
       @user = @book.user
       @newbook = Book.new
@@ -17,7 +18,8 @@ class CommentsController < ApplicationController
     @book = Book.find(params[:book_id])
     @comment = current_user.comments.find_by(book_id: @book.id)
     @comment.destroy
-    redirect_to book_path(@book)
+    #redirect_to book_path(@book)
+    render :index
   end
 
   private
